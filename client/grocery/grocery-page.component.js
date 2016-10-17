@@ -3,6 +3,9 @@ import GroceryPageController from './grocery-page.controller';
 
 const groceryPageComponent = {
     template,
+    bindings:{
+        filter:'<',
+    },
     controller:GroceryPageController,
     controllerAs:'groceryPageCtrl',
 };

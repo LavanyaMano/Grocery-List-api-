@@ -3,8 +3,7 @@
  ng-mouseover="groceryItemCtrl.setShowControls(true)"
  ng-mouseleave="groceryItemCtrl.setShowControls(false)"
  >
-    <div class="panel-body">
-        <h1>{{groceryItemCtrl.hi}}</h1>
+    <div class="panel-body ">
         <p class="lead" ng-show ="!groceryItemCtrl.editMode">
         Item : {{groceryItemCtrl.groceryItem.name}}
         <br>
@@ -24,13 +23,13 @@
         </div>
         <div class="grocery-item-controls"
         ng-show="groceryItemCtrl.showControls">
-            <button class="btn btn-default"
+            <button class="btn btn-default "
             ng-click="groceryItemCtrl.setEditMode(true)">
                 <i class="fa fa-pencil"></i>
             </button>
-            <button class="btn btn-danger"
+            <button class="btn btn-danger "
             ng-click="groceryItemCtrl.deleteItem()">
-                <i class="fa fa-trash-o"></i>
+                <i class="fa fa-trash-o  faa-ring animated"></i>
             </button>
         </div>
     </div>

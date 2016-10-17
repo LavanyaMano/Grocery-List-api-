@@ -3,13 +3,14 @@
         <div class="container-fluid">
             <div class="navbar-header">
                 <span class="navbar-brand">
-                    <i class="fa fa-thumbs-o-up faa-bounce"></i> Grocery List
+                    <i class="fa fa-thumbs-o-up faa-bounce animated"></i> Grocery List
                 </span>
+                  <input ng-model="appCtrl.filter" class="form-control pull-right" placeholder="Search for items">
             </div>
         </div>
     </nav>
 </header>
 <div class="container-fluid">
     <flashes/>
-    <grocery-page/>
+    <grocery-page filter="appCtrl.filter"/>
 </div>

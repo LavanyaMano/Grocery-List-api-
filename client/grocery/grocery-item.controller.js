@@ -5,7 +5,6 @@ function GroceryItemController(){
     ctrl.showControls =false;
     ctrl.editMode = false;
     ctrl.itemToEdit={};
-    console.log(ctrl)
 
     ctrl.setShowControls = function setShowControls(showControls){
         ctrl.showControls = showControls;

@@ -7,3 +7,90 @@ flashes{
     bottom: 0;
     z-index: 2000;
 }
+flashes .alert.ng-enter {
+    -webkit-transition: all 0.3s ease-out;
+    transition: all 0.3s ease-out;
+    transform: translate(-200px, 0);
+}
+
+flashes .alert.ng-enter-active {
+  transform: translate(0, 0);
+}
+
+flashes .alert.ng-leave {
+  -webkit-transition: 0.3s ease-out;
+  transition: 0.3s ease-out;
+  
+  transform: translate(0, 0);
+}
+
+flashes .alert.ng-leave-active {
+    transform: translate(-200px, 0);
+}
+grocery-item {
+    display: block !important;
+}
+
+grocery-item.ng-enter {
+    -webkit-transition: all 0.3s ease-out;
+    transition: all 0.3s ease-out;
+    transform: translate(0, -1000%);
+}
+
+grocery-item.ng-enter-active {
+  transform: translate(0, 0);
+}
+
+grocery-item.ng-leave {
+  -webkit-transition: 0.3s ease-out;
+  transition: 0.3s ease-out;
+  
+  transform: translate(0, 0);
+}
+
+grocery-item.ng-leave-active {
+    transform: translate(100%, 0);
+}
+.btn-danger{
+    background-color: rgb(128,0,128);
+}
+.my-messages {
+  transition:1s linear all;
+}
+.my-messages.ng-active {
+  // messages are visible
+}
+.my-messages.ng-inactive {
+  // messages are hidden
+}
+.some-message {
+  transition:1s linear all;
+}
+
+.some-message.ng-enter {}
+.some-message.ng-enter.ng-enter-active {}
+
+.some-message.ng-leave {}
+.some-message.ng-leave.ng-leave-active {}
+
+/*.cursor-try{
+    cursor: url(http://publicdomainvectors.org/photos/1294509577.png),url(myBall.cur),auto;
+}
+
+.box {
+
+  background: #5FCF80;
+  width: 10px;
+  height: 10px;
+}
+.box:hover {
+  transform: rotate(360deg);
+  background: #9351A6;
+  border-radius: 100%;
+}
+.rotate {
+  transition: all 0.5s ease-in-out;
+}
+.rotate:hover {
+  transition: all 1s ease-in-out;
+}*/

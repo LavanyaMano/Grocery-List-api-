@@ -37071,6 +37071,9 @@
 	
 	var groceryPageComponent = {
 	    template: _groceryPage2.default,
+	    bindings: {
+	        filter: '<'
+	    },
 	    controller: _groceryPage4.default,
 	    controllerAs: 'groceryPageCtrl'
 	};
@@ -37081,7 +37084,7 @@
 /* 15 */
 /***/ function(module, exports) {
 
-	module.exports = "<div class=\"row\">\n    <div class=\"col-md-4\">\n        <div class=\"jumbotron\">\n            <h1>\n                Grocery List\n            </h1>\n            <p class=\"lead\">\n                View the grocery items in your list.\n            </p>\n            <grocery-edit\n                groceryitem = \"groceryPageCtrl.editedItem\"\n                save=\"groceryPageCtrl.saveItem(editedItem)\"/>\n        </div>\n    </div>\n    <div class=\"col-md-8\">\n        <h2>Items</h2>\n            <grocery-item\n            ng-repeat= \"groceryitem in groceryPageCtrl.groceryitems track by groceryitem.id\" \n            grocery-item = \"groceryitem\"\n            delete =\"groceryPageCtrl.deleteItem(itemToDelete)\"\n            update = \"groceryPageCtrl.updateItem(itemToUpdate)\"/>\n    </div>\n</div>"
+	module.exports = "<div class=\"row\">\n    <div class=\"col-md-4\">\n        <div class=\"jumbotron box rotate \">\n            <h1>\n                Grocery List\n            </h1> \n            \n            <p class=\"lead\">\n                View the grocery items in your list.\n            </p>\n            <grocery-edit\n                groceryitem = \"groceryPageCtrl.editedItem\"\n                save=\"groceryPageCtrl.saveItem(editedItem)\"/>\n        </div>\n    </div>\n    <div class=\"col-md-8\">\n        <h3>List has ({{groceryPageCtrl.itemsCount}} items)</h3>\n            <grocery-item\n            ng-repeat= \"groceryitem in groceryPageCtrl.groceryitems | filter: groceryPageCtrl.filter\" \n            grocery-item = \"groceryitem\"\n            delete =\"groceryPageCtrl.deleteItem(itemToDelete)\"\n            update = \"groceryPageCtrl.updateItem(itemToUpdate)\"/>\n    </div>\n</div>"
 
 /***/ },
 /* 16 */
@@ -37104,6 +37107,8 @@
 	    function getGroceryItems() {
 	        groceryAPIService.groceryitems.get().$promise.then(function (data) {
 	            ctrl.groceryitems = data.results;
+	            ctrl.itemsCount = ctrl.groceryitems.length;
+	            console.log("item count is in page controller" + ctrl.itemsCount);
 	        });
 	    }
 	    getGroceryItems();
@@ -46010,7 +46015,7 @@
 /* 19 */
 /***/ function(module, exports) {
 
-	module.exports = "<div \n class=\"panel panel-default\"\n ng-mouseover=\"groceryItemCtrl.setShowControls(true)\"\n ng-mouseleave=\"groceryItemCtrl.setShowControls(false)\"\n >\n    <div class=\"panel-body\">\n        <h1>{{groceryItemCtrl.hi}}</h1>\n        <p class=\"lead\" ng-show =\"!groceryItemCtrl.editMode\">\n        Item : {{groceryItemCtrl.groceryItem.name}}\n        <br>\n        Quantity:{{groceryItemCtrl.groceryItem.quantity}}\n        <br>\n        Price:{{groceryItemCtrl.groceryItem.price}}\n        </p>\n        <grocery-edit \n            ng-show = \"groceryItemCtrl.editMode\"\n            grocery-item = \"groceryItemCtrl.itemToEdit\"\n            save=\"groceryItemCtrl.editItem(editedItem)\"\n            cancel=\"groceryItemCtrl.setEditMode(false)\">\n    </div>\n    <div class=\"panel-footer clearfix\">\n        <div class=\"pull-right\">\n            {{groceryItemCtrl.groceryItem.created_date | date:'medium'}}\n        </div>\n        <div class=\"grocery-item-controls\"\n        ng-show=\"groceryItemCtrl.showControls\">\n            <button class=\"btn btn-default\"\n            ng-click=\"groceryItemCtrl.setEditMode(true)\">\n                <i class=\"fa fa-pencil\"></i>\n            </button>\n            <button class=\"btn btn-danger\"\n            ng-click=\"groceryItemCtrl.deleteItem()\">\n                <i class=\"fa fa-trash-o\"></i>\n            </button>\n        </div>\n    </div>\n</div>\n"
+	module.exports = "<div \n class=\"panel panel-default\"\n ng-mouseover=\"groceryItemCtrl.setShowControls(true)\"\n ng-mouseleave=\"groceryItemCtrl.setShowControls(false)\"\n >\n    <div class=\"panel-body \">\n        <p class=\"lead\" ng-show =\"!groceryItemCtrl.editMode\">\n        Item : {{groceryItemCtrl.groceryItem.name}}\n        <br>\n        Quantity:{{groceryItemCtrl.groceryItem.quantity}}\n        <br>\n        Price:{{groceryItemCtrl.groceryItem.price}}\n        </p>\n        <grocery-edit \n            ng-show = \"groceryItemCtrl.editMode\"\n            grocery-item = \"groceryItemCtrl.itemToEdit\"\n            save=\"groceryItemCtrl.editItem(editedItem)\"\n            cancel=\"groceryItemCtrl.setEditMode(false)\">\n    </div>\n    <div class=\"panel-footer clearfix\">\n        <div class=\"pull-right\">\n            {{groceryItemCtrl.groceryItem.created_date | date:'medium'}}\n        </div>\n        <div class=\"grocery-item-controls\"\n        ng-show=\"groceryItemCtrl.showControls\">\n            <button class=\"btn btn-default \"\n            ng-click=\"groceryItemCtrl.setEditMode(true)\">\n                <i class=\"fa fa-pencil\"></i>\n            </button>\n            <button class=\"btn btn-danger \"\n            ng-click=\"groceryItemCtrl.deleteItem()\">\n                <i class=\"fa fa-trash-o  faa-ring animated\"></i>\n            </button>\n        </div>\n    </div>\n</div>\n"
 
 /***/ },
 /* 20 */
@@ -46029,7 +46034,6 @@
 	    ctrl.showControls = false;
 	    ctrl.editMode = false;
 	    ctrl.itemToEdit = {};
-	    console.log(ctrl);
 	
 	    ctrl.setShowControls = function setShowControls(showControls) {
 	        ctrl.showControls = showControls;
@@ -46086,7 +46090,7 @@
 /* 22 */
 /***/ function(module, exports) {
 
-	module.exports = "<form ng-submit=\"groceryEditCtrl.saveItem()\">\n    <div class=\"form-group\">\n        Add New Grocery Item\n        <input ng-model=\"groceryEditCtrl.editedItem.name\" class=\"form-control\" placeholder=\"Item Name\"></input>\n        <input ng-model=\"groceryEditCtrl.editedItem.quantity\" class=\"form-control\" placeholder=\"Quantity\"></input>\n        <input ng-model=\"groceryEditCtrl.editedItem.price\" class=\"form-control\" placeholder=\"Price\"></input>\n    </div>\n    <button \n    class=\"btn btn-default\" \n    type=\"submit\"\n    ng-disabled=\"!groceryEditCtrl.editedItem.name\"\n    >Save Item</button>\n    <button\n    class=\"btn btn-danger\"\n    type = \"button\"\n    ng-show=\"groceryEditCtrl.cancel\"\n    ng-click=\"groceryEditCtrl.cancel()\"\n    >\n        Cancel\n    </button>\n</form>"
+	module.exports = "<form ng-submit=\"groceryEditCtrl.saveItem()\">\n    <div class=\"form-group\" name=\"myForm\">\n        <p class=\"faa-pulse animated\"> Add New Grocery Item</p>\n        <input ng-model=\"groceryEditCtrl.editedItem.name\" class=\"form-control\" placeholder=\"Item Name\"></input>\n        <input ng-model=\"groceryEditCtrl.editedItem.quantity\" class=\"form-control\" name=\"myField\" placeholder=\"Quantity\"></input>\n        <input ng-model=\"groceryEditCtrl.editedItem.price\" class=\"form-control\" name=\"myField\"  placeholder=\"Price\" ></input>\n        <div ng-messages=\"myForm.myField.$error\" class=\"my-messages\" role=\"alert\">\n            <div ng-message=\"required\" class=\"some-message\">Please enter a valid number for this field.</div>\n        </div>\n    </div>\n    <button \n    class=\"btn btn-default\" \n    type=\"submit\"\n    ng-disabled=\"!groceryEditCtrl.editedItem.name\"\n    >\n        Save Item\n    </button>\n    <button\n    class=\"btn btn-danger\"\n    type = \"button\"\n    ng-show=\"groceryEditCtrl.cancel\"\n    ng-click=\"groceryEditCtrl.cancel()\"\n    >\n        Cancel\n    </button>\n</form>"
 
 /***/ },
 /* 23 */
@@ -46168,7 +46172,7 @@
 /* 26 */
 /***/ function(module, exports) {
 
-	module.exports = "<header>\n    <nav class=\"navbar navbar-inverse navbar-static-top\">\n        <div class=\"container-fluid\">\n            <div class=\"navbar-header\">\n                <span class=\"navbar-brand\">\n                    <i class=\"fa fa-thumbs-o-up faa-bounce\"></i> Grocery List\n                </span>\n            </div>\n        </div>\n    </nav>\n</header>\n<div class=\"container-fluid\">\n    <flashes/>\n    <grocery-page/>\n</div>"
+	module.exports = "<header>\n    <nav class=\"navbar navbar-inverse navbar-static-top\">\n        <div class=\"container-fluid\">\n            <div class=\"navbar-header\">\n                <span class=\"navbar-brand\">\n                    <i class=\"fa fa-thumbs-o-up faa-bounce animated\"></i> Grocery List\n                </span>\n                  <input ng-model=\"appCtrl.filter\" class=\"form-control pull-right\" placeholder=\"Search for items\">\n            </div>\n        </div>\n    </nav>\n</header>\n<div class=\"container-fluid\">\n    <flashes/>\n    <grocery-page filter=\"appCtrl.filter\"/>\n</div>"
 
 /***/ },
 /* 27 */
