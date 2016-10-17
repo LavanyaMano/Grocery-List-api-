@@ -1,0 +1,37 @@
+<div 
+ class="panel panel-default"
+ ng-mouseover="groceryItemCtrl.setShowControls(true)"
+ ng-mouseleave="groceryItemCtrl.setShowControls(false)"
+ >
+    <div class="panel-body">
+        <h1>{{groceryItemCtrl.hi}}</h1>
+        <p class="lead" ng-show ="!groceryItemCtrl.editMode">
+        Item : {{groceryItemCtrl.groceryItem.name}}
+        <br>
+        Quantity:{{groceryItemCtrl.groceryItem.quantity}}
+        <br>
+        Price:{{groceryItemCtrl.groceryItem.price}}
+        </p>
+        <grocery-edit 
+            ng-show = "groceryItemCtrl.editMode"
+            grocery-item = "groceryItemCtrl.itemToEdit"
+            save="groceryItemCtrl.editItem(editedItem)"
+            cancel="groceryItemCtrl.setEditMode(false)">
+    </div>
+    <div class="panel-footer clearfix">
+        <div class="pull-right">
+            {{groceryItemCtrl.groceryItem.created_date | date:'medium'}}
+        </div>
+        <div class="grocery-item-controls"
+        ng-show="groceryItemCtrl.showControls">
+            <button class="btn btn-default"
+            ng-click="groceryItemCtrl.setEditMode(true)">
+                <i class="fa fa-pencil"></i>
+            </button>
+            <button class="btn btn-danger"
+            ng-click="groceryItemCtrl.deleteItem()">
+                <i class="fa fa-trash-o"></i>
+            </button>
+        </div>
+    </div>
+</div>

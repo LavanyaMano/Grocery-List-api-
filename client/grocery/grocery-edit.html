@@ -1,0 +1,21 @@
+<form ng-submit="groceryEditCtrl.saveItem()">
+    <div class="form-group">
+        Add New Grocery Item
+        <input ng-model="groceryEditCtrl.editedItem.name" class="form-control" placeholder="Item Name"></input>
+        <input ng-model="groceryEditCtrl.editedItem.quantity" class="form-control" placeholder="Quantity"></input>
+        <input ng-model="groceryEditCtrl.editedItem.price" class="form-control" placeholder="Price"></input>
+    </div>
+    <button 
+    class="btn btn-default" 
+    type="submit"
+    ng-disabled="!groceryEditCtrl.editedItem.name"
+    >Save Item</button>
+    <button
+    class="btn btn-danger"
+    type = "button"
+    ng-show="groceryEditCtrl.cancel"
+    ng-click="groceryEditCtrl.cancel()"
+    >
+        Cancel
+    </button>
+</form>

@@ -1,0 +1,9 @@
+body{
+    overflow-x:hidden; 
+}
+flashes{
+    display: block !important;
+    position: fixed;
+    bottom: 0;
+    z-index: 2000;
+}

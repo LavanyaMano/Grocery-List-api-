@@ -1,0 +1,23 @@
+<div class="row">
+    <div class="col-md-4">
+        <div class="jumbotron">
+            <h1>
+                Grocery List
+            </h1>
+            <p class="lead">
+                View the grocery items in your list.
+            </p>
+            <grocery-edit
+                groceryitem = "groceryPageCtrl.editedItem"
+                save="groceryPageCtrl.saveItem(editedItem)"/>
+        </div>
+    </div>
+    <div class="col-md-8">
+        <h2>Items</h2>
+            <grocery-item
+            ng-repeat= "groceryitem in groceryPageCtrl.groceryitems track by groceryitem.id" 
+            grocery-item = "groceryitem"
+            delete ="groceryPageCtrl.deleteItem(itemToDelete)"
+            update = "groceryPageCtrl.updateItem(itemToUpdate)"/>
+    </div>
+</div>
