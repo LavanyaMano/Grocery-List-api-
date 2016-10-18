@@ -3,10 +3,15 @@
         <div class="container-fluid">
             <div class="navbar-header">
                 <span class="navbar-brand">
-                    <i class="fa fa-thumbs-o-up faa-bounce animated"></i> Grocery List
+                    <i class="fa fa-shopping-cart  faa-passing" aria-hidden="true"></i> Grocery List
                 </span>
-                  <input ng-model="appCtrl.filter" class="form-control pull-right" placeholder="Search for items">
+                  
             </div>
+             <form class="navbar-form navbar-right">
+             <div class="form-group">
+            <input ng-model="appCtrl.filter" class="form-control" placeholder="Search for items">
+            </div>
+            </form>
         </div>
     </nav>
 </header>

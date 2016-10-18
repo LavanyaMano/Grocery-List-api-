@@ -7,7 +7,7 @@ flashes{
     bottom: 0;
     z-index: 2000;
 }
-flashes .alert.ng-enter {
+flashes.alert.ng-enter {
     -webkit-transition: all 0.3s ease-out;
     transition: all 0.3s ease-out;
     transform: translate(-200px, 0);
@@ -17,14 +17,14 @@ flashes .alert.ng-enter-active {
   transform: translate(0, 0);
 }
 
-flashes .alert.ng-leave {
+flashes.alert.ng-leave {
   -webkit-transition: 0.3s ease-out;
   transition: 0.3s ease-out;
   
   transform: translate(0, 0);
 }
 
-flashes .alert.ng-leave-active {
+flashes.alert.ng-leave-active {
     transform: translate(-200px, 0);
 }
 grocery-item {
@@ -51,6 +51,7 @@ grocery-item.ng-leave {
 grocery-item.ng-leave-active {
     transform: translate(100%, 0);
 }
+
 .btn-danger{
     background-color: rgb(128,0,128);
 }

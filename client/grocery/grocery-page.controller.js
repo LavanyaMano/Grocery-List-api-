@@ -7,7 +7,6 @@ function GroceryPageController(groceryAPIService,flashesService,$interval){
         groceryAPIService.groceryitems.get().$promise.then((data)=>{
             ctrl.groceryitems = data.results;
             ctrl.itemsCount = ctrl.groceryitems.length;
-            console.log("item count is in page controller"+ ctrl.itemsCount);
         });
     }
     getGroceryItems();
