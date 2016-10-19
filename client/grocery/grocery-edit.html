@@ -1,11 +1,8 @@
 <form ng-submit="groceryEditCtrl.saveItem()">
-    <div class="form-group" name="myForm">
-        <input ng-model="groceryEditCtrl.editedItem.name" class="form-control" placeholder="Item Name"></input>
-        <input ng-model="groceryEditCtrl.editedItem.quantity" class="form-control" name="myField" placeholder="Quantity" required></input>
-        <div ng-messages="myForm.myField.$error" class="my-messages" role="alert">
-            <div ng-message="required" class="some-message">Please enter a valid number for this field.</div>
-        </div>
-        <input ng-model="groceryEditCtrl.editedItem.price" class="form-control" placeholder="Price" ></input>
+    <div class="form-group" >
+        <input ng-model="groceryEditCtrl.editedItem.name" placeholder="Item Name" ></input>
+        <input ng-model="groceryEditCtrl.editedItem.quantity" placeholder="Quantity" text="number" ></input>
+        <input ng-model="groceryEditCtrl.editedItem.price" placeholder="Price" text="number" ></input>
     </div>
     <button 
     class="btn btn-default" 

@@ -55,24 +55,8 @@ grocery-item.ng-leave-active {
 .btn-danger{
     background-color: rgb(128,0,128);
 }
-.my-messages {
-  transition:1s linear all;
-}
-.my-messages.ng-active {
-  // messages are visible
-}
-.my-messages.ng-inactive {
-  // messages are hidden
-}
-.some-message {
-  transition:1s linear all;
-}
 
-.some-message.ng-enter {}
-.some-message.ng-enter.ng-enter-active {}
 
-.some-message.ng-leave {}
-.some-message.ng-leave.ng-leave-active {}
 
 /*.cursor-try{
     cursor: url(http://publicdomainvectors.org/photos/1294509577.png),url(myBall.cur),auto;

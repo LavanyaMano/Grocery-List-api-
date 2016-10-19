@@ -17,7 +17,7 @@
     <div class="col-md-8">
         <h3>List has ({{groceryPageCtrl.itemsCount}} items)</h3>
             <grocery-item
-            ng-repeat= "groceryitem in groceryPageCtrl.groceryitems | filter: groceryPageCtrl.filter" 
+            ng-repeat= "groceryitem in groceryPageCtrl.groceryitems | filter: groceryPageCtrl.filter track by groceryitem.id" 
             grocery-item = "groceryitem"
             delete ="groceryPageCtrl.deleteItem(itemToDelete)"
             update = "groceryPageCtrl.updateItem(itemToUpdate)"/>
