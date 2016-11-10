@@ -11,6 +11,7 @@
         <br>
         Price:{{groceryItemCtrl.groceryItem.price}}
         </p>
+        <h4 class="pull-right">Total: {{groceryItemCtrl.groceryItem.total | number:0}}</h4>
         <grocery-edit 
             ng-show = "groceryItemCtrl.editMode"
             grocery-item = "groceryItemCtrl.itemToEdit"
